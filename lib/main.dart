@@ -16,7 +16,7 @@ class MelancongApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Melancog',
+      title: 'Melancong',
       theme: ThemeData(
         primaryColor: const Color(0xFFf25aa6),
         scaffoldBackgroundColor: const Color(0xFFf8f6f7),

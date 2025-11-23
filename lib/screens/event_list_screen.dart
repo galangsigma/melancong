@@ -4,7 +4,7 @@ import '../widgets/bottom_nav_bar.dart';
 
 // ==================== PAGE 2: EVENT LIST ====================
 class EventListPage extends StatefulWidget {
-  const EventListPage({Key? key}) : super(key: key);
+  const EventListPage({super.key});
 
   @override
   State<EventListPage> createState() => _EventListPageState();
@@ -221,20 +221,18 @@ class _EventListPageState extends State<EventListPage> {
                   const SizedBox(height: 16),
 
                   // Event List (Menggunakan EventCard jika sudah dibuat)
-                  ...events
-                      .map(
-                        (event) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          // Jika EventCard sudah dibuat, panggil EventCard di sini
-                          // Contoh: EventCard(event: event, onTap: _navigateToDetail)
-                          child: _buildEventListTile(
-                            event,
-                            surfaceColor,
-                            textColor,
-                          ),
-                        ),
-                      )
-                      .toList(),
+                  ...events.map(
+                    (event) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      // Jika EventCard sudah dibuat, panggil EventCard di sini
+                      // Contoh: EventCard(event: event, onTap: _navigateToDetail)
+                      child: _buildEventListTile(
+                        event,
+                        surfaceColor,
+                        textColor,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 // ==================== PAGE 1: INTEREST SELECTION ====================
 class InterestSelectionScreen extends StatefulWidget {
-  const InterestSelectionScreen({Key? key}) : super(key: key);
+  const InterestSelectionScreen({super.key});
 
   @override
   State<InterestSelectionScreen> createState() =>

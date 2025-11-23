@@ -6,11 +6,11 @@ class BottomNavBar extends StatelessWidget {
   final Color? overrideBg;
 
   const BottomNavBar({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onTap,
     this.overrideBg,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
