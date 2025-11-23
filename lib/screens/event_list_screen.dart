@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluterproject/consts.dart';
 import '../widgets/bottom_nav_bar.dart';
+
 // import '../widgets/event_card.dart'; // Jika event_card dibuat
 
 // ==================== PAGE 2: EVENT LIST ====================
@@ -66,11 +71,9 @@ class _EventListPageState extends State<EventListPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = const Color(0xFFf25aa6);
-    final bgColor = isDark ? const Color(0xFF221019) : const Color(0xFFf8f6f7);
+    final bgColor = isDark ? colorBlack : colorWhite;
     final surfaceColor = isDark ? const Color(0xFF2d1620) : Colors.white;
-    final textColor = isDark
-        ? const Color(0xFFf8f6f7)
-        : const Color(0xFF221019);
+    final textColor = isDark ? colorWhite : colorBlack;
 
     return Scaffold(
       backgroundColor: bgColor,

@@ -1,8 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluterproject/consts.dart';
 import 'screens/event_detail_screen.dart';
 import 'screens/event_list_screen.dart';
-import 'screens/interest_selection_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/interest_selection_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/splash_screen.dart';
 
@@ -19,13 +23,13 @@ class MelancongApp extends StatelessWidget {
       title: 'Melancong',
       theme: ThemeData(
         primaryColor: const Color(0xFFf25aa6),
-        scaffoldBackgroundColor: const Color(0xFFf8f6f7),
+        scaffoldBackgroundColor: colorWhite,
         fontFamily: 'Plus Jakarta Sans',
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
         primaryColor: const Color(0xFFf25aa6),
-        scaffoldBackgroundColor: const Color(0xFF221019),
+        scaffoldBackgroundColor: colorBlack,
         fontFamily: 'Plus Jakarta Sans',
         brightness: Brightness.dark,
       ),

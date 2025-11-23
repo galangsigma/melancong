@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:fluterproject/consts.dart';
 
 class InterestSelectionScreen extends StatefulWidget {
@@ -55,11 +58,9 @@ class _InterestSelectionScreenState extends State<InterestSelectionScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = const Color(0xFFf25aa6);
-    final textColor = isDark
-        ? const Color(0xFFf8f6f7)
-        : const Color(0xFF1b0d14);
+    final textColor = isDark ? colorWhite : const Color(0xFF1b0d14);
     final subtextColor = isDark
-        ? const Color(0xFFf8f6f7).withValues(alpha: 0.7)
+        ? colorWhite.withValues(alpha: 0.7)
         : const Color(0xFF1b0d14).withValues(alpha: 0.7);
 
     return Scaffold(
@@ -105,8 +106,8 @@ class _InterestSelectionScreenState extends State<InterestSelectionScreen> {
                         color: isSelected
                             ? primaryColor
                             : isDark
-                            ? const Color(0xFF221019)
-                            : const Color(0xFFf8f6f7),
+                            ? colorBlack
+                            : colorWhite,
                         border: Border.all(
                           color: isSelected
                               ? primaryColor

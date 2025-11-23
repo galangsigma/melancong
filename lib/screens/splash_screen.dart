@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:geolocator/geolocator.dart';
 
 class SplashScreen extends StatefulWidget {

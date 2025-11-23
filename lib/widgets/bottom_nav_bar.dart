@@ -1,4 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluterproject/consts.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -16,17 +20,15 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = const Color(0xFFf25aa6);
-    final textColor = isDark
-        ? const Color(0xFFf8f6f7)
-        : const Color(0xFF221019);
+    final textColor = isDark ? colorWhite : colorBlack;
 
     return Container(
       decoration: BoxDecoration(
         color:
             overrideBg ??
             (isDark
-                ? const Color(0xFF221019).withValues(alpha: 0.9)
-                : const Color(0xFFf8f6f7).withValues(alpha: 0.9)),
+                ? colorBlack.withValues(alpha: 0.9)
+                : colorWhite.withValues(alpha: 0.9)),
         border: Border(
           top: BorderSide(
             color: isDark

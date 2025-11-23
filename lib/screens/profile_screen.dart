@@ -1,4 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluterproject/consts.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -18,11 +22,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = const Color(0xFFf25aa6);
-    final bgColor = isDark ? const Color(0xFF221019) : const Color(0xFFf8f6f7);
+    final bgColor = isDark ? colorBlack : colorWhite;
     final surfaceColor = isDark ? const Color(0xFF2d1620) : Colors.white;
-    final textColor = isDark
-        ? const Color(0xFFf8f6f7)
-        : const Color(0xFF221019);
+    final textColor = isDark ? colorWhite : colorBlack;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -406,8 +408,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? const Color(0xFF221019).withValues(alpha: 0.9)
-            : const Color(0xFFf8f6f7).withValues(alpha: 0.9),
+            ? colorBlack.withValues(alpha: 0.9)
+            : colorWhite.withValues(alpha: 0.9),
         border: Border(
           top: BorderSide(
             color: isDark

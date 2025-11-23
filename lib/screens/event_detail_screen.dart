@@ -1,4 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluterproject/consts.dart';
+
 import '../widgets/bottom_nav_bar.dart'; // Import BottomNavBar
 
 // ==================== PAGE 3: EVENT DETAIL ====================
@@ -27,10 +32,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = const Color(0xFFf25aa6);
-    final bgColor = isDark ? const Color(0xFF221019) : const Color(0xFFf8f6f7);
-    final textColor = isDark
-        ? const Color(0xFFf8f6f7)
-        : const Color(0xFF221019);
+    final bgColor = isDark ? colorBlack : colorWhite;
+    final textColor = isDark ? colorWhite : colorBlack;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -250,9 +253,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
             onTap: _onNavTap,
             // Perlu disesuaikan karena bottom nav di EventDetailPage sedikit berbeda
             // dengan list page (opacity)
-            overrideBg: isDark
-                ? const Color(0xFF221019).withValues(alpha: 0.5)
-                : const Color(0xFFf8f6f7),
+            overrideBg: isDark ? colorBlack.withValues(alpha: 0.5) : colorWhite,
           ),
         ],
       ),

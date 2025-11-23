@@ -1,7 +1,11 @@
 // import 'package:flutter/material.dart';
 // import '../widgets/bottom_nav_bar.dart';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:fluterproject/consts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -65,11 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final primaryColor = const Color(0xFFf25aa6);
-    final bgColor = isDark ? const Color(0xFF221019) : const Color(0xFFf8f6f7);
+    final bgColor = isDark ? colorBlack : colorWhite;
     final surfaceColor = isDark ? const Color(0xFF2d1620) : Colors.white;
-    final textColor = isDark
-        ? const Color(0xFFf8f6f7)
-        : const Color(0xFF221019);
+    final textColor = isDark ? colorWhite : colorBlack;
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -421,8 +423,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         color: isDark
-            ? const Color(0xFF221019).withValues(alpha: 0.9)
-            : const Color(0xFFf8f6f7).withValues(alpha: 0.9),
+            ? colorBlack.withValues(alpha: 0.9)
+            : colorWhite.withValues(alpha: 0.9),
         border: Border(
           top: BorderSide(
             color: isDark
