@@ -68,9 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = const Color(0xFFf25aa6);
+    final primaryColor = colorPink;
     final bgColor = isDark ? colorBlack : colorWhite;
-    final surfaceColor = isDark ? const Color(0xFF2d1620) : Colors.white;
+    final surfaceColor = isDark ? colorBlackLighter : Colors.white;
     final textColor = isDark ? colorWhite : colorBlack;
 
     return Scaffold(

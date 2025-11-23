@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:geolocator/geolocator.dart';
 
+// Project imports:
+import 'package:fluterproject/consts.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -81,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ElevatedButton(
                 onPressed: () => _requestLocationContinue(),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFf25aa6),
+                  backgroundColor: colorPink,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 40,

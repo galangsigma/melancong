@@ -19,7 +19,7 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = const Color(0xFFf25aa6);
+    final primaryColor = colorPink;
     final textColor = isDark ? colorWhite : colorBlack;
 
     return Container(

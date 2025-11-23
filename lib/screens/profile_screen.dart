@@ -21,9 +21,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = const Color(0xFFf25aa6);
+    final primaryColor = colorPink;
     final bgColor = isDark ? colorBlack : colorWhite;
-    final surfaceColor = isDark ? const Color(0xFF2d1620) : Colors.white;
+    final surfaceColor = isDark ? colorBlackLighter : Colors.white;
     final textColor = isDark ? colorWhite : colorBlack;
 
     return Scaffold(
@@ -360,10 +360,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       leading: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: const Color(0xFFf25aa6).withValues(alpha: 0.1),
+          color: colorPink.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Icon(icon, color: const Color(0xFFf25aa6), size: 20),
+        child: Icon(icon, color: colorPink, size: 20),
       ),
       title: Text(
         title,

@@ -31,7 +31,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = const Color(0xFFf25aa6);
+    final primaryColor = colorPink;
     final bgColor = isDark ? colorBlack : colorWhite;
     final textColor = isDark ? colorWhite : colorBlack;
 

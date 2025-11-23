@@ -18,3 +18,6 @@ const Set<String> interestList = {
 
 const colorBlack = Color(0xFF221019);
 const colorWhite = Color(0xFFf8f6f7);
+const colorPink = Color(0xFFf25aa6);
+const colorBlackLighter = Color(0xFF2d1620);
+const colorBlackText = Color(0xFF1b0d14);

@@ -22,13 +22,13 @@ class MelancongApp extends StatelessWidget {
     return MaterialApp(
       title: 'Melancong',
       theme: ThemeData(
-        primaryColor: const Color(0xFFf25aa6),
+        primaryColor: colorPink,
         scaffoldBackgroundColor: colorWhite,
         fontFamily: 'Plus Jakarta Sans',
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
-        primaryColor: const Color(0xFFf25aa6),
+        primaryColor: colorPink,
         scaffoldBackgroundColor: colorBlack,
         fontFamily: 'Plus Jakarta Sans',
         brightness: Brightness.dark,

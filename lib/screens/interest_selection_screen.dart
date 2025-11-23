@@ -37,7 +37,7 @@ class _InterestSelectionScreenState extends State<InterestSelectionScreen> {
         return const AlertDialog(
           content: Row(
             children: [
-              CircularProgressIndicator(color: Color(0xFFf25aa6)),
+              CircularProgressIndicator(color: colorPink),
               SizedBox(width: 20),
               Text("Mencari acara di sekitar Anda..."),
             ],
@@ -57,11 +57,9 @@ class _InterestSelectionScreenState extends State<InterestSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryColor = const Color(0xFFf25aa6);
-    final textColor = isDark ? colorWhite : const Color(0xFF1b0d14);
-    final subtextColor = isDark
-        ? colorWhite.withValues(alpha: 0.7)
-        : const Color(0xFF1b0d14).withValues(alpha: 0.7);
+    final primaryColor = colorPink;
+    final textColor = isDark ? colorWhite : colorBlackText;
+    final subtextColor = textColor.withValues(alpha: 0.7);
 
     return Scaffold(
       body: SafeArea(
