@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:fluterproject/consts.dart';
-
-import '../widgets/bottom_nav_bar.dart'; // Import BottomNavBar
+import 'package:fluterproject/widgets/bottom_nav_bar.dart';
 
 // ==================== PAGE 3: EVENT DETAIL ====================
 class EventDetailPage extends StatefulWidget {
@@ -15,18 +14,7 @@ class EventDetailPage extends StatefulWidget {
 }
 
 class _EventDetailPageState extends State<EventDetailPage> {
-  int selectedNavIndex = 1; // Index untuk bottom navigation
-
-  void _onNavTap(int index) {
-    // Logic navigasi menggunakan rute yang sudah didaftarkan
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/home'); // Pindah ke Home
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, '/events'); // Pindah ke Events
-    } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, '/profile'); // Pindah ke Profile
-    }
-  }
+  String selectedNavIndex = '/events';
 
   @override
   Widget build(BuildContext context) {
@@ -249,11 +237,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
 
           // Bottom Navigation
           BottomNavBar(
-            selectedIndex: selectedNavIndex,
-            onTap: _onNavTap,
-            // Perlu disesuaikan karena bottom nav di EventDetailPage sedikit berbeda
-            // dengan list page (opacity)
-            overrideBg: isDark ? colorBlack.withValues(alpha: 0.5) : colorWhite,
+            current: selectedNavIndex,
           ),
         ],
       ),

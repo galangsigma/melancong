@@ -1,11 +1,9 @@
-// import 'package:flutter/material.dart';
-// import '../widgets/bottom_nav_bar.dart';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:fluterproject/consts.dart';
+import 'package:fluterproject/widgets/bottom_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,55 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int selectedNavIndex = 0;
-
-  final List<Map<String, dynamic>> categories = [
-    {
-      'icon': Icons.music_note,
-      'label': 'Music',
-      'color': const Color(0xFFFF6B9D),
-    },
-    {
-      'icon': Icons.restaurant,
-      'label': 'Food',
-      'color': const Color(0xFFFF8F5E),
-    },
-    {
-      'icon': Icons.sports_soccer,
-      'label': 'Sports',
-      'color': const Color(0xFF6BCB77),
-    },
-    {'icon': Icons.palette, 'label': 'Art', 'color': const Color(0xFF9D84FF)},
-    {'icon': Icons.movie, 'label': 'Movies', 'color': const Color(0xFF4D96FF)},
-    {'icon': Icons.flight, 'label': 'Travel', 'color': const Color(0xFFFFB800)},
-  ];
-
-  final List<Map<String, String>> popularEvents = [
-    {
-      'title': 'Summer Music Festival',
-      'date': 'Jul 25 · 6:00 PM',
-      'location': 'Beach Arena',
-      'image':
-          'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400',
-      'attendees': '2.5K',
-    },
-    {
-      'title': 'Food Truck Rally',
-      'date': 'Jul 28 · 12:00 PM',
-      'location': 'Downtown Square',
-      'image':
-          'https://images.unsplash.com/photo-1565123409695-7b5ef63a2efb?w=400',
-      'attendees': '1.8K',
-    },
-    {
-      'title': 'Art Exhibition',
-      'date': 'Jul 30 · 10:00 AM',
-      'location': 'Modern Gallery',
-      'image':
-          'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=400',
-      'attendees': '950',
-    },
-  ];
+  String selectedNavIndex = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -115,55 +65,57 @@ class _HomeScreenState extends State<HomeScreen> {
                         Icons.notifications_outlined,
                         color: primaryColor,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        //   TODO
+                      },
                     ),
                   ),
                 ],
               ),
             ),
 
+            // Search Bar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: surfaceColor,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search events...',
+                    hintStyle: TextStyle(
+                      color: textColor.withValues(alpha: 0.5),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: textColor.withValues(alpha: 0.5),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Search Bar
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: surfaceColor,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.05),
-                              blurRadius: 10,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Search events...',
-                            hintStyle: TextStyle(
-                              color: textColor.withValues(alpha: 0.5),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.search,
-                              color: textColor.withValues(alpha: 0.5),
-                            ),
-                            border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 32),
-
                     // Categories
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -261,9 +213,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: popularEvents.length,
+                      itemCount: eventList.length,
                       itemBuilder: (context, index) {
-                        final event = popularEvents[index];
+                        final event = eventList[index];
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, '/event-detail');
@@ -415,93 +367,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(primaryColor, textColor, isDark),
-    );
-  }
-
-  Widget _buildBottomNav(Color primaryColor, Color textColor, bool isDark) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? colorBlack.withValues(alpha: 0.9)
-            : colorWhite.withValues(alpha: 0.9),
-        border: Border(
-          top: BorderSide(
-            color: isDark
-                ? primaryColor.withValues(alpha: 0.3)
-                : primaryColor.withValues(alpha: 0.2),
-            width: 1,
-          ),
-        ),
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home, 'Home', 0, primaryColor, textColor),
-              _buildNavItem(
-                Icons.confirmation_number,
-                'Events',
-                1,
-                primaryColor,
-                textColor,
-              ),
-              _buildNavItem(
-                Icons.person,
-                'Profile',
-                2,
-                primaryColor,
-                textColor,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(
-    IconData icon,
-    String label,
-    int index,
-    Color primaryColor,
-    Color textColor,
-  ) {
-    final isSelected = selectedNavIndex == index;
-    return GestureDetector(
-      onTap: () {
-        if (index == 1) {
-          Navigator.pushNamed(context, '/events');
-        } else if (index == 2) {
-          Navigator.pushNamed(context, '/profile');
-        } else {
-          setState(() {
-            selectedNavIndex = index;
-          });
-        }
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? primaryColor : textColor.withValues(alpha: 0.6),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-              color: isSelected
-                  ? primaryColor
-                  : textColor.withValues(alpha: 0.6),
-            ),
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomNavBar(current: selectedNavIndex,),
     );
   }
 }

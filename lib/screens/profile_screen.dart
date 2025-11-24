@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:fluterproject/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -12,7 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  int selectedNavIndex = 2;
+  String selectedNavIndex = '/profile';
   bool notificationsEnabled = true;
   bool darkModeEnabled = false;
 
@@ -321,7 +322,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(primaryColor, textColor, isDark),
+      bottomNavigationBar: BottomNavBar(current: selectedNavIndex, ),
     );
   }
 
@@ -398,92 +399,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // Handle logout
             },
             child: const Text('Logout', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBottomNav(Color primaryColor, Color textColor, bool isDark) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isDark
-            ? colorBlack.withValues(alpha: 0.9)
-            : colorWhite.withValues(alpha: 0.9),
-        border: Border(
-          top: BorderSide(
-            color: isDark
-                ? primaryColor.withValues(alpha: 0.3)
-                : primaryColor.withValues(alpha: 0.2),
-            width: 1,
-          ),
-        ),
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home, 'Home', 0, primaryColor, textColor),
-              _buildNavItem(
-                Icons.confirmation_number,
-                'Events',
-                1,
-                primaryColor,
-                textColor,
-              ),
-              _buildNavItem(
-                Icons.person,
-                'Profile',
-                2,
-                primaryColor,
-                textColor,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(
-    IconData icon,
-    String label,
-    int index,
-    Color primaryColor,
-    Color textColor,
-  ) {
-    final isSelected = selectedNavIndex == index;
-    return GestureDetector(
-      onTap: () {
-        if (index == 0) {
-          Navigator.pushNamed(context, '/home');
-        } else if (index == 1) {
-          Navigator.pushNamed(context, '/events');
-        } else {
-          setState(() {
-            selectedNavIndex = index;
-          });
-        }
-      },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? primaryColor : textColor.withValues(alpha: 0.6),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-              color: isSelected
-                  ? primaryColor
-                  : textColor.withValues(alpha: 0.6),
-            ),
           ),
         ],
       ),

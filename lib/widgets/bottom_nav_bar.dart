@@ -5,16 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:fluterproject/consts.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final int selectedIndex;
-  final Function(int) onTap;
+  final String current;
   final Color? overrideBg;
 
-  const BottomNavBar({
-    super.key,
-    required this.selectedIndex,
-    required this.onTap,
-    this.overrideBg,
-  });
+  const BottomNavBar({super.key, required this.current, this.overrideBg});
 
   @override
   Widget build(BuildContext context) {
@@ -44,20 +38,29 @@ class BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildNavItem(Icons.home, 'Home', 0, primaryColor, textColor),
+              _buildNavItem(
+                Icons.home,
+                'Home',
+                '/home',
+                primaryColor,
+                textColor,
+                context,
+              ),
               _buildNavItem(
                 Icons.confirmation_number,
                 'Events',
-                1,
+                '/events',
                 primaryColor,
                 textColor,
+                context,
               ),
               _buildNavItem(
                 Icons.person,
                 'Profile',
-                2,
+                '/profile',
                 primaryColor,
                 textColor,
+                context,
               ),
             ],
           ),
@@ -69,13 +72,16 @@ class BottomNavBar extends StatelessWidget {
   Widget _buildNavItem(
     IconData icon,
     String label,
-    int index,
+    String index,
     Color primaryColor,
     Color textColor,
+    BuildContext context,
   ) {
-    final isSelected = selectedIndex == index;
+    final isSelected = current == index;
     return GestureDetector(
-      onTap: () => onTap(index),
+      onTap: () {
+        _onNavTap(context, index);
+      },
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -97,5 +103,27 @@ class BottomNavBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onNavTap(BuildContext context, String dest) {
+    if (current == dest) {
+      return;
+    } else {
+      Navigator.pushReplacementNamed(context, dest);
+      
+    }
+
+    //
+    // switch (dest) {
+    //   case 0:
+    //     Navigator.pushReplacementNamed(context, '/home');
+    //     break;
+    //   case 1:
+    //     Navigator.pushReplacementNamed(context, '/events');
+    //     break;
+    //   case 2:
+    //     Navigator.pushReplacementNamed(context, '/profile');
+    //     break;
+    // }
   }
 }

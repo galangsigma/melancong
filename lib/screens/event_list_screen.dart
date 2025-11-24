@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:fluterproject/consts.dart';
-import '../widgets/bottom_nav_bar.dart';
+import 'package:fluterproject/widgets/bottom_nav_bar.dart';
 
-// import '../widgets/event_card.dart'; // Jika event_card dibuat
-
-// ==================== PAGE 2: EVENT LIST ====================
 class EventListPage extends StatefulWidget {
   const EventListPage({super.key});
 
@@ -17,54 +14,11 @@ class EventListPage extends StatefulWidget {
 
 class _EventListPageState extends State<EventListPage> {
   String selectedCategory = 'All';
-  int selectedNavIndex = 1; // Index untuk bottom navigation
-
-  final List<Map<String, String>> events = [
-    {
-      'title': 'Indie Music Fest',
-      'date': 'Jul 15 · 7:00 PM',
-      'image':
-          'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400',
-      'category': 'Music',
-    },
-    // ... event data lainnya
-    {
-      'title': 'Food Bazaar',
-      'date': 'Jul 16 · 11:00 AM',
-      'image':
-          'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400',
-      'category': 'Food',
-    },
-    {
-      'title': 'Cosplay Convention',
-      'date': 'Jul 22 · 9:00 AM',
-      'image':
-          'https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?w=400',
-      'category': 'Cosplay',
-    },
-    {
-      'title': 'Marathon',
-      'date': 'Jul 23 · 6:00 AM',
-      'image':
-          'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400',
-      'category': 'Running',
-    },
-  ];
+  String selectedNavIndex = '/events';
 
   void _navigateToDetail() {
-    print('Navigating to event detail'); // Debug
+    print('Navigating to event detail');
     Navigator.pushNamed(context, '/event-detail');
-  }
-
-  void _onNavTap(int index) {
-    // Logic navigasi menggunakan rute yang sudah didaftarkan
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/home'); // Pindah ke Home
-    } else if (index == 1) {
-      // Sudah di Events
-    } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, '/profile'); // Pindah ke Profile
-    }
   }
 
   @override
@@ -109,28 +63,24 @@ class _EventListPageState extends State<EventListPage> {
             // Categories
             Container(
               height: 50,
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: ListView(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  _buildCategoryChip('All', primaryColor, isDark),
-                  const SizedBox(width: 8),
-                  _buildCategoryChip('Music', primaryColor, isDark),
-                  const SizedBox(width: 8),
-                  _buildCategoryChip('Food', primaryColor, isDark),
-                  const SizedBox(width: 8),
-                  _buildCategoryChip('Cosplay', primaryColor, isDark),
-                  const SizedBox(width: 8),
-                  _buildCategoryChip('Running', primaryColor, isDark),
-                ],
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                itemCount: interestList.length,
+                separatorBuilder: (_, _) {
+                  return SizedBox(width: 12.0);
+                },
+                itemBuilder: (context, index) {
+                  return _chipBuilder(context, index, primaryColor, isDark);
+                },
               ),
             ),
 
             // Content
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16),
                 children: [
                   // Featured Event (Dapat diekstrak ke widget terpisah)
                   GestureDetector(
@@ -224,7 +174,7 @@ class _EventListPageState extends State<EventListPage> {
                   const SizedBox(height: 16),
 
                   // Event List (Menggunakan EventCard jika sudah dibuat)
-                  ...events.map(
+                  ...eventList.map(
                     (event) => Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       // Jika EventCard sudah dibuat, panggil EventCard di sini
@@ -242,42 +192,47 @@ class _EventListPageState extends State<EventListPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: selectedNavIndex,
-        onTap: _onNavTap,
-      ),
+      bottomNavigationBar: BottomNavBar(current: selectedNavIndex),
     );
   }
 
-  Widget _buildCategoryChip(String label, Color primaryColor, bool isDark) {
-    final isSelected = selectedCategory == label;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedCategory = label;
-        });
-        print('Category selected: $label');
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? primaryColor
-              : isDark
-              ? primaryColor.withValues(alpha: 0.2)
-              : primaryColor.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? Colors.white : primaryColor,
+  Widget _chipBuilder(
+    BuildContext context,
+    int index,
+    Color primaryColor,
+    bool isDark,
+  ) {
+    {
+      String category = interestList.elementAt(index);
+      bool isSelected = selectedCategory == category;
+
+      return GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedCategory = category;
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? primaryColor
+                : isDark
+                ? primaryColor.withValues(alpha: 0.2)
+                : primaryColor.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            category,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: isSelected ? Colors.white : primaryColor,
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   // Helper widget untuk list event
