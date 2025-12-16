@@ -13,7 +13,7 @@ class EventListPage extends StatefulWidget {
 }
 
 class _EventListPageState extends State<EventListPage> {
-  String selectedCategory = 'All';
+  String? selectedCategory;
   String selectedNavIndex = '/events';
 
   void _navigateToDetail(event) {
@@ -172,16 +172,18 @@ class _EventListPageState extends State<EventListPage> {
                   ),
                   const SizedBox(height: 16),
 
-                  ...eventList.map(
-                    (event) => Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _buildEventListTile(
-                        event,
-                        surfaceColor,
-                        textColor,
+                  ...eventList
+                      .where((event) => selectedCategory == null? true: event['category'] == selectedCategory)
+                      .map(
+                        (event) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: _buildEventListTile(
+                            event,
+                            surfaceColor,
+                            textColor,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -205,7 +207,11 @@ class _EventListPageState extends State<EventListPage> {
       return GestureDetector(
         onTap: () {
           setState(() {
-            selectedCategory = category;
+            if (selectedCategory == category) {
+              selectedCategory = null;
+            } else {
+              selectedCategory = category;
+            }
           });
         },
         child: Container(
