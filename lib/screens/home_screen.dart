@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:fluterproject/consts.dart';
+import 'package:fluterproject/global.dart' as global;
 import 'package:fluterproject/widgets/bottom_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final bgColor = isDark ? colorBlack : colorWhite;
     final surfaceColor = isDark ? colorBlackLighter : Colors.white;
     final textColor = isDark ? colorWhite : colorBlack;
+    final interested = eventList.where((e) => global.interests.contains(e['category'])).toList();
+    print(interested);
+
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -216,9 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      itemCount: eventList.length,
+                      itemCount: interested.length,
                       itemBuilder: (context, index) {
-                        final event = eventList[index];
+                        final event = interested[index];
                         return GestureDetector(
                           onTap: () => Navigator.pushNamed(
                             context,

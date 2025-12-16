@@ -91,4 +91,46 @@ final List<Map<String, String>> eventList = [
     'description':
         'Discover stunning works from emerging and established artists. This exhibition showcases contemporary paintings, sculptures, and interactive installations.',
   },
+  {
+    'title': 'Tech Innovators Conference',
+    'date': 'Dec 02 · 09:00',
+    'location': 'Convention Center',
+    'image': 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=500',
+    'attendees': '1.2K',
+    'category': 'Tech',
+    'description':
+        'A gathering of the brightest minds in technology. Keynotes, workshops, and networking opportunities for all tech enthusiasts.',
+  },
+  {
+    'title': 'Yoga and Meditation Retreat',
+    'date': 'Dec 05 · 08:00',
+    'location': 'Serenity Gardens',
+    'image': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500',
+    'attendees': '300',
+    'category': 'Relaxing',
+    'description':
+        'A full day dedicated to mindfulness and well-being. Join experienced instructors for guided yoga sessions, meditation, and wellness workshops in a peaceful environment.',
+  },
+  {
+    'title': 'City Championship Finals',
+    'date': 'Dec 07 · 19:30',
+    'location': 'National Stadium',
+    'image':
+        'https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=500',
+    'attendees': '15K',
+    'category': 'Sports',
+    'description':
+        'The final showdown! Watch the top two teams battle it out for the city championship title in a thrilling night of soccer.',
+  },
+  {
+    'title': 'Indie Film Festival',
+    'date': 'Dec 10 · 17:00',
+    'location': 'The Grand Cinema',
+    'image':
+        'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?W=500',
+    'attendees': '850',
+    'category': 'Movies',
+    'description':
+        'Celebrate the art of filmmaking with a showcase of independent films from around the world. Q&A sessions with directors and actors after screenings.',
+  },
 ];
