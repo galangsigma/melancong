@@ -82,44 +82,55 @@ class _EventListPageState extends State<EventListPage> {
               ),
             ),
 
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.all(16),
-                children: [
-                  Text(
-                    'Nearby',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  ...eventList
-                      .where(
-                        (event) => selectedCategory == null
-                            ? true
-                            : event['category'] == selectedCategory,
-                      )
-                      .map(
-                        (event) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: _buildEventListTile(
-                            event,
-                            surfaceColor,
-                            textColor,
-                          ),
-                        ),
-                      ),
-                ],
-              ),
-            ),
+            buildList(textColor, surfaceColor),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavBar(current: selectedNavIndex),
     );
+  }
+
+  Expanded buildList(Color textColor, Color surfaceColor) {
+    var filtered = eventList.where(
+      (event) => selectedCategory == null
+          ? true
+          : event['category'] == selectedCategory,
+    );
+    if (filtered.isNotEmpty) {
+      return Expanded(
+        child: ListView(
+          padding: EdgeInsets.all(16),
+          children: [
+            Text(
+              'Nearby',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            ...filtered.map(
+              (event) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _buildEventListTile(event, surfaceColor, textColor),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Expanded(
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(
+            'Belum ada event',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    }
   }
 
   Widget _chipBuilder(

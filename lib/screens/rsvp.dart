@@ -73,7 +73,15 @@ class _RsvpPageState extends State<RsvpPage> {
         ),
       );
     } else {
-      return Expanded(child: Text('Belum ada RSVP'));
+      return Expanded(
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(
+            'Belum ada event',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
     }
   }
 
