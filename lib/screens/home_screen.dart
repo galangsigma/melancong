@@ -199,11 +199,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     const SizedBox(height: 32),
 
-                    // Popular Events
+                    // Events filtered by interests
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        'Popular Events',
+                        'Interesting Events',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
